@@ -1,16 +1,17 @@
-package com.example.grignotte_back.springboot.model;
+package com.example.grignotte_back.springboot.domain.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 @Entity // This tells Hibernate to make a table out of this class
 public class User {
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
     @NotNull
@@ -18,6 +19,7 @@ public class User {
     private String name;
 
     @NotNull
+    @Email
     @Size(min = 1, max = 50)
     private String email;
 

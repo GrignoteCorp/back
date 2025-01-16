@@ -9,8 +9,8 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 @Data
 @NoArgsConstructor
-@Table(name = "experiences")
-public class ExperienceEntity {
+@Table(name = "collections")
+public class CollectionEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)

@@ -1,9 +1,12 @@
+version: '3.8'
+
 services:
-  server:
+  back:
     build:
-      context: .
+      dockerfile: Dockerfile
     ports:
       - 8081:8081
+    container_name: grignotte_backend
     depends_on:
       db:
         condition: service_healthy
@@ -14,10 +17,21 @@ services:
       SPRING_DATASOURCE_USERNAME: postgres
       SPRING_DATASOURCE_PASSWORD: password
 
+  frontend:
+    build:
+      context: ../front
+    container_name: grignotte_frontend
+    image: node:lts
+    ports:
+      - 8080:8080
+    volumes:
+      - ../front/src:/app/src
+
   db:
     image: postgres
     restart: always
     user: postgres
+    container_name: grignotte_db
     environment:
       POSTGRES_USER: postgres
       POSTGRES_DB: grignotte-db
